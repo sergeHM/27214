@@ -1,0 +1,50 @@
+package _27214.q1;
+
+
+public class Department extends Hospital {
+    private String departmentName;
+    private String departmentCode;
+    
+    
+    public Department(int id, String createdDate, String updatedDate,
+                     String hospitalName, String address, String phoneNumber, String email,
+                     String departmentName, String departmentCode) throws HospitalDataException {
+        super(id, createdDate, updatedDate, hospitalName, address, phoneNumber, email);
+        setDepartmentName(departmentName);
+        setDepartmentCode(departmentCode);
+    }
+    
+    
+    public String getDepartmentName() {
+        return departmentName;
+    }
+    
+    public void setDepartmentName(String departmentName) throws HospitalDataException {
+        if (departmentName == null || departmentName.trim().isEmpty()) {
+            throw new HospitalDataException("Department name cannot be null or empty");
+        }
+        this.departmentName = departmentName;
+    }
+    
+    public String getDepartmentCode() {
+        return departmentCode;
+    }
+    
+    public void setDepartmentCode(String departmentCode) throws HospitalDataException {
+        if (departmentCode == null || departmentCode.trim().isEmpty()) {
+            throw new HospitalDataException("Department code cannot be null or empty");
+        }
+        
+        if (!departmentCode.matches("^[A-Za-z0-9]{3,}$")) {
+            throw new HospitalDataException("Department code must be alphanumeric and at least 3 characters");
+        }
+        this.departmentCode = departmentCode;
+    }
+    
+    @Override
+    public String toString() {
+        return super.toString() + "\nDepartment Name: " + departmentName + 
+               ", Department Code: " + departmentCode;
+    }
+}
+
